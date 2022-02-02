@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adminform</title>
+</head>
+
+<body>
+    <form action="">
+        <label for="fullname">Fullname</label>
+        <input type="text" name="fullname" id="fullname">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username">
+        <label for="picture">Picture</label>
+        <input type="text" name="picture" id="picture">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email">
+        <button type="submit" id="savebutton">Save</button>
+        <button type="reset" id="clearbutton">Clear</button>
+    </form>
+
+    <table class="admintable" style="width: 1000px">
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                Fullname
+            </td>
+            <td>
+                Username
+            </td>
+            <td>
+                Image
+            </td>
+            <td>
+                Email
+            </td>
+            <td>
+                Delete
+            </td>
+            <td>
+                Change
+            </td>
+        </tr>
+    </table>
+
+    <script>
+
+        class Database {
+            constructor() {
+                this.database = [];
+            }
+
+            addItem(fullname, username, picture, email, imageurl) {
+                let obj = {
+                    id: this.database.length,
+                    fullname: fullname,
+                    username: username,
+                    picture: picture,
+                    email: email,
+                    imageurl: imageurl
+                };
+                this.database.push(obj);
+            }
+
+        }
+
+        let mydatabase = new Database();
+
+        mydatabase.addItem("Kis János", "Jani", true, "kisjanos@gmail.com", "http://placekitten.com/200/200");
+        mydatabase.addItem("Nagy Lajos", "Lali", true, "nagylajos@gmail.com", "http://placekitten.com/200/200");
+        mydatabase.addItem("Kovács Tamás", "Tomi", true, "kovacstamas@gmail.com", "http://placekitten.com/200/200");
+        mydatabase.addItem("Varga Anna", "Annácska", false, "vargaanna@gmail.com", "http://placekitten.com/200/200");
+        mydatabase.addItem("Farkas Pál", "Pali", false, "farkaspal@gmail.com", "http://placekitten.com/200/200");
+        mydatabase.addItem("Fekete Péter", "Peti", false, "feketepeter@gmail.com", "http://placekitten.com/200/200");
+
+        console.log(mydatabase.database)
+
+        let dbs = mydatabase.database;
+
+        let idStorage = [];
+
+
+
+        let fninput = document.querySelector("#fullname");
+        let uninput = document.querySelector("#username");
+        let pinput = document.querySelector("#picture");
+        let einput = document.querySelector("#email");
+
+        let table = document.querySelector(".admintable")
+
+        for (let i = 0; i < dbs.length; i++) {
+            let tr = document.createElement("tr");
+            let td1 = document.createElement("td");
+            let td2 = document.createElement("td");
+            let td3 = document.createElement("td");
+            let td4 = document.createElement("td");
+            let td5 = document.createElement("td");
+            let td6 = document.createElement("td");
+            let td7 = document.createElement("td");
+            let deleteButton = document.createElement("button");
+            let changeButton = document.createElement("button");
+
+            deleteButton.innerHTML = "Delete";
+            changeButton.innerHTML = "Change";
+
+            td1.innerHTML = dbs[i].id;
+            td2.innerHTML = dbs[i].fullname;
+            td3.innerHTML = dbs[i].username;
+            td4.innerHTML = dbs[i].picture;
+            td5.innerHTML = dbs[i].email;
+            td6.append(deleteButton);
+            td7.append(changeButton);
+
+            table.append(tr);
+            tr.append(td1);
+            tr.append(td2);
+            tr.append(td3);
+            tr.append(td4);
+            tr.append(td5);
+            tr.append(td6);
+            tr.append(td7);
+
+
+
+            deleteButton.addEventListener("click", () => {
+                deleteButton.parentElement.parentElement.remove();
+                dbs.splice(i, 1);
+
+                /* num.innerHTML = dbs.length;
+
+                usersWithImg = [];
+
+                for (let i = 0; i < dbs.length; i++) {
+                    if (dbs[i].imageurl !== undefined) {
+                        usersWithImg.push(dbs[i]);
+                    }
+                }
+
+                numimg.innerHTML = usersWithImg.length; */
+            })
+
+
+
+            changeButton.addEventListener("click", () => {
+                idStorage.splice(0, 1)
+
+                fninput.value = "";
+                uninput.value = "";
+                pinput.value = "";
+                einput.value = "";
+
+                fninput.value = td2.innerHTML;
+                uninput.value = td3.innerHTML;
+                pinput.value = td4.innerHTML;
+                einput.value = td5.innerHTML;
+
+                idStorage.push(Number(td1.innerHTML));
+            })
+
+
+
+        }
+
+        let saveButton = document.querySelector("#savebutton");
+        let trs = table.children
+
+        saveButton.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            for (let j = 0; j < trs.length; j++) {
+                if (j > 0 && idStorage[0] === Number(trs[j].children[0].innerHTML)) {
+                    trs[j].children[1].innerHTML = fninput.value;
+                    trs[j].children[2].innerHTML = uninput.value;
+                    trs[j].children[3].innerHTML = ("true" === pinput.value);
+                    trs[j].children[4].innerHTML = einput.value;
+                }
+            }
+
+            for (let i = 0; i < dbs.length; i++) {
+                if (idStorage[0] === dbs[i].id) {
+                    dbs[i].fullname = fninput.value;
+                    dbs[i].username = uninput.value;
+                    dbs[i].picture = ("true" === pinput.value);
+                    dbs[i].email = einput.value;
+
+                    fninput.value = "";
+                    uninput.value = "";
+                    pinput.value = "";
+                    einput.value = "";
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

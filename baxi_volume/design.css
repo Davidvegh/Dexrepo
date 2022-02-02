@@ -1,0 +1,26 @@
+.volume-control-wrapper {
+    display: flex;
+    margin: 10px;
+}
+
+.volume-indicators, .volume-indicators div, .volume-control-wrapper button {
+    display: inline-block;
+}
+
+.volume-indicators div, .volume-control-wrapper button {
+    background-color: #CCCCCC;
+    height: 30px;
+}
+
+.volume-control-wrapper button {
+    width: 30px;
+    margin: 0 10px;
+}
+
+.volume-indicators div {
+    width: 5px;
+}
+
+.volume-indicators div.active {
+    background-color: #00c500;
+}

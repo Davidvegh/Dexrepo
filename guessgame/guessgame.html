@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h2>Guess the number from 1 to 10</h2>
+    <form action="">
+        <input type="text" id="input">
+        <button type="submit">Guess</button>
+    </form>
+
+    <script>
+
+        let input = document.querySelector("#input");
+        let button = document.querySelector("button");
+        let number = Math.floor(Math.random() * 10 + 1);
+        console.log(number);
+        counter = 0;
+
+        button.addEventListener("click", (e) => {
+            e.preventDefault(),
+            counter++
+            console.log(counter);
+
+            if(counter < 3){
+                if(Number(input.value) === number){
+                    let win = document.createElement("h2");
+                    win.innerHTML = "You won the game!";
+                    document.body.append(win);
+                    input.disabled = true;
+                    button.disabled = true;
+                }
+                else if(Number(input.value) !== number){
+                    let lose = document.createElement("h3");
+                    lose.innerHTML = "You failed this guess!";
+                    document.body.append(lose);
+                    input.value = "";
+                }
+            }
+            else{
+                let warning = document.createElement("h2");
+                warning.innerHTML = "Out of guesses!"
+                document.body.append(warning);
+                input.disabled = true;
+                button.disabled = true;
+            }
+        })
+
+    </script>
+
+</body>
+</html>

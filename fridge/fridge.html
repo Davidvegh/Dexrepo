@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body {
+        width: auto;
+    }
+
+    #fridge {
+        background-color: burlywood;
+        display: flex;
+        flex-direction: column;
+        width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
+        justify-content: space-around;
+        gap: 20px;
+    }
+
+    .shelf {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+    }
+
+    .fooditem {
+        border: solid black 2px;
+        width: 300px;
+        height: 200px;
+        text-align: center;
+    }
+</style>
+
+<body>
+
+    <div id="fridge">
+        <div class="shelf">
+        </div>
+        <hr>
+        <div class="shelf">
+        </div>
+        <hr>
+        <div class="shelf">
+        </div>
+    </div>
+
+    <script>
+
+        let fridge = [
+            [  // first shelf
+                {
+                    name: "milk",
+                    daysRemain: 4
+                },
+                {
+                    name: "yogurt",
+                    daysRemain: 6
+                }
+            ],
+
+
+            [  // second shelf
+                {
+                    name: "salami",
+                    daysRemain: 3
+                },
+                {
+                    name: "beer",
+                    daysRemain: 8
+                }
+            ],
+
+
+            [  // third shelf
+                {
+                    name: "lunch",
+                    daysRemain: 2
+                },
+                {
+                    name: "tomatoes",
+                    daysRemain: 4
+                },
+                {
+                    name: "cucumber",
+                    daysRemain: 3
+                }
+            ]
+        ];
+
+        let shelves = document.querySelectorAll("#fridge div");
+
+        function renderFridge(fridgeshelves) {
+            fridge.forEach((shelf, i) => {
+                shelf.forEach((item, j) => {
+                    let fooditem = document.createElement("div");
+                    fooditem.classList.add("fooditem");
+                    fridgeshelves[i].append(fooditem);
+
+                    let food = document.createElement("div");
+                    food.classList.add("food");
+                    food.innerHTML = item.name;
+                    fooditem.append(food);
+
+                    let days = document.createElement("div");
+                    days.classList.add("daysremain");
+                    days.innerHTML = item.daysRemain;
+                    fooditem.append(days);
+                })
+            })
+        }
+
+        renderFridge(shelves);
+
+
+
+    </script>
+
+</body>
+
+</html>
