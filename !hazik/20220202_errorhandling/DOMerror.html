@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h2>Eredmény</h2>
+    <div class="sth"></div>
+    <div class="error"></div>
+
+
+    <script>
+
+        let sth = document.querySelector(".sth")
+        let err = document.querySelector(".error")
+
+        function myFunc(dom, str){
+            if(!dom || !str || typeof str !== "string" || typeof dom !== "object"){
+                throw new Error("Valami nem stimmel");
+            }
+            dom.innerHTML = str;
+        }
+
+        try{
+            myFunc("randomstring");
+        }
+        catch(error){
+            err.innerHTML = error;
+        }
+
+    </script>
+
+</body>
+</html>
