@@ -1,3 +1,5 @@
+import {strUpper} from "./wordUtil.js"
+
 function strLength(str){
     if(typeof str !== "string"){
         throw new Error("Nem string tesom")
@@ -5,7 +7,7 @@ function strLength(str){
     return str.length
 }
 
-function strUpper(str){
+function strFullUpper(str){
     if(typeof str !== "string"){
         throw new Error("Nem string tesom")
     }
@@ -18,4 +20,4 @@ function strUpper(str){
     return newarr.join(" ")
 }
 
-export {strLength, strUpper}
+export {strLength, strFullUpper, strUpper}
