@@ -50,7 +50,12 @@
         <hr>
         <div class="shelf">
         </div>
+        <div class="buttons">
+            <button type="button" id="next">Next day</button>
+            <button type="button" id="throw">Throw out</button>
+        </div>
     </div>
+    
 
     <script>
 
@@ -95,10 +100,11 @@
             ]
         ];
 
-        let shelves = document.querySelectorAll("#fridge div");
+        let fridgeshelves = document.querySelectorAll("#fridge div");
 
         function renderFridge(fridgeshelves) {
             fridge.forEach((shelf, i) => {
+                fridgeshelves[i].innerHTML = "";
                 shelf.forEach((item, j) => {
                     let fooditem = document.createElement("div");
                     fooditem.classList.add("fooditem");
@@ -117,9 +123,17 @@
             })
         }
 
-        renderFridge(shelves);
+        renderFridge(fridgeshelves);
 
 
+
+        let nextDayBtn = document.getElementById("next");
+
+        nextDayBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            
+            
+        })
 
     </script>
 
