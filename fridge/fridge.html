@@ -36,7 +36,36 @@
         width: 300px;
         height: 200px;
         text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     }
+
+    .food {
+        margin-bottom: 20px;
+        font-size: 2rem;
+    }
+
+    .daysremain {
+        margin-top: 20px;
+        font-size: 2rem;
+    }
+
+    .yellow{
+        background-color: yellow;
+    }
+
+    .red{
+        background-color: red;
+        color: white;
+    }
+
+    .black{
+        background-color: black;
+        color: white;
+    }
+
 </style>
 
 <body>
@@ -55,7 +84,7 @@
             <button type="button" id="throw">Throw out</button>
         </div>
     </div>
-    
+
 
     <script>
 
@@ -117,8 +146,22 @@
 
                     let days = document.createElement("div");
                     days.classList.add("daysremain");
-                    days.innerHTML = item.daysRemain;
+                    days.innerHTML = `(${item.daysRemain})`;
                     fooditem.append(days);
+
+                    if(item.daysRemain < 4){
+                        fooditem.classList.add("yellow")
+                    }
+
+                    if(item.daysRemain < 2){
+                        fooditem.classList.remove("yellow")
+                        fooditem.classList.add("red")
+                    }
+
+                    if(item.daysRemain < 1){
+                        fooditem.classList.remove("red")
+                        fooditem.classList.add("black")
+                    }
                 })
             })
         }
@@ -131,8 +174,30 @@
 
         nextDayBtn.addEventListener("click", (event) => {
             event.preventDefault();
+
+            fridge.forEach((shelf, i) => {
+                shelf.forEach((item, j) => {
+                    if (item.daysRemain > 0) {
+                        item.daysRemain = item.daysRemain - 1;
+                    }
+                })
+            })
+
+            renderFridge(fridgeshelves);
+        })
+
+
+
+        let throwOutBtn = document.getElementById("throw")
+
+        throwOutBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            let badFood = document.getElementsByClassName("black");
             
-            
+            for(i = 0; i < badFood.length; i++){
+                badFood[i].remove()
+            }
         })
 
     </script>
