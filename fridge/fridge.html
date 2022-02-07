@@ -193,7 +193,7 @@
         throwOutBtn.addEventListener("click", (event) => {
             event.preventDefault();
 
-            let badFood = document.getElementsByClassName("black");
+            let badFood = document.querySelectorAll(".black");
             
             for(i = 0; i < badFood.length; i++){
                 badFood[i].remove()
