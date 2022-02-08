@@ -1,12 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        .shirtdiv {
+            width: 300px;
+            height: 100px;
+            text-align: center;
+            padding: 40px;
+            box-sizing: border-box;
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+    </style>
+
 </head>
+
 <body>
-    
+
+    <form action="">
+        <select name="shirtoptions" id="shirtoptions">
+        </select>
+        <button id="filter">Filter</button>
+    </form>
+
+    <div class="main">
+
+    </div>
+
+    <script>
+
+        let shirts = [
+            { color: "red", text: "You are the CSS to my HTML", textColor: "yellow", qty: 5 },
+            { color: "blue", text: "Woof", textColor: "white", qty: 3 },
+            { color: "yellow", text: "I <3 JavaScript", textColor: "green", qty: 1 },
+            { color: "black", text: "Titanium Dioxide", textColor: "white", qty: 3 },
+            { color: "white", text: "DUNGEON SYNTH", textColor: "black", qty: 5 }
+        ];
+
+
+
+        let main = document.querySelector(".main");
+
+        function renderShirts(shirts) {
+            main.innerHTML = "";
+            shirts.forEach(item => {
+                let shirt = document.createElement("div");
+                shirt.classList.add("shirtdiv");
+                shirt.style.backgroundColor = item.color;
+                shirt.innerHTML = `${item.text} (${item.qty})`;
+                shirt.style.color = item.textColor;
+                main.append(shirt)
+            })
+        }
+
+        renderShirts(shirts);
+
+
+
+        let select = document.querySelector("#shirtoptions")
+
+        function renderOptions(shirts) {
+            let none = document.createElement("option");
+            none.innerHTML = "all"
+            select.append(none)
+
+            shirts.forEach(shirt => {
+                let option = document.createElement("option");
+                option.value = shirt.color;
+                option.innerHTML = shirt.color;
+                select.append(option)
+            })
+        }
+
+        renderOptions(shirts);
+
+
+
+        function renderFilter(shirts) {
+            main.innerHTML = "";
+            shirts.forEach(item => {
+                if (item.color === select.value) {
+                    let shirt = document.createElement("div");
+                    shirt.classList.add("shirtdiv");
+                    shirt.style.backgroundColor = item.color;
+                    shirt.innerHTML = `${item.text} (${item.qty})`;
+                    shirt.style.color = item.textColor;
+                    main.append(shirt)
+                }
+            })
+        }
+
+
+
+        let filterBtn = document.querySelector("#filter")
+
+        filterBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            if(select.value !== "all"){
+                renderFilter(shirts);
+            }
+            else{
+                renderShirts(shirts);
+            }
+            
+        })
+
+    </script>
+
 </body>
+
 </html>
