@@ -52,20 +52,19 @@
         font-size: 2rem;
     }
 
-    .yellow{
+    .yellow {
         background-color: yellow;
     }
 
-    .red{
+    .red {
         background-color: red;
         color: white;
     }
 
-    .black{
+    .black {
         background-color: black;
         color: white;
     }
-
 </style>
 
 <body>
@@ -135,32 +134,36 @@
             fridge.forEach((shelf, i) => {
                 fridgeshelves[i].innerHTML = "";
                 shelf.forEach((item, j) => {
-                    let fooditem = document.createElement("div");
-                    fooditem.classList.add("fooditem");
-                    fridgeshelves[i].append(fooditem);
 
-                    let food = document.createElement("div");
-                    food.classList.add("food");
-                    food.innerHTML = item.name;
-                    fooditem.append(food);
+                    if (item) {
 
-                    let days = document.createElement("div");
-                    days.classList.add("daysremain");
-                    days.innerHTML = `(${item.daysRemain})`;
-                    fooditem.append(days);
+                        let fooditem = document.createElement("div");
+                        fooditem.classList.add("fooditem");
+                        fridgeshelves[i].append(fooditem);
 
-                    if(item.daysRemain < 4){
-                        fooditem.classList.add("yellow")
-                    }
+                        let food = document.createElement("div");
+                        food.classList.add("food");
+                        food.innerHTML = item.name;
+                        fooditem.append(food);
 
-                    if(item.daysRemain < 2){
-                        fooditem.classList.remove("yellow")
-                        fooditem.classList.add("red")
-                    }
+                        let days = document.createElement("div");
+                        days.classList.add("daysremain");
+                        days.innerHTML = `(${item.daysRemain})`;
+                        fooditem.append(days);
 
-                    if(item.daysRemain < 1){
-                        fooditem.classList.remove("red")
-                        fooditem.classList.add("black")
+                        if (item.daysRemain < 4) {
+                            fooditem.classList.add("yellow")
+                        }
+
+                        if (item.daysRemain < 2) {
+                            fooditem.classList.remove("yellow")
+                            fooditem.classList.add("red")
+                        }
+
+                        if (item.daysRemain < 1) {
+                            fooditem.classList.remove("red")
+                            fooditem.classList.add("black")
+                        }
                     }
                 })
             })
@@ -194,10 +197,25 @@
             event.preventDefault();
 
             let badFood = document.querySelectorAll(".black");
-            
-            for(i = 0; i < badFood.length; i++){
+
+            let badFoodArray = [];
+
+            for (i = 0; i < badFood.length; i++) {
                 badFood[i].remove()
+                badFoodArray.push(badFood[i].firstChild.innerHTML)
             }
+
+            console.log(badFoodArray)
+
+            fridge.forEach((shelf, i) => {
+                shelf.forEach((item, j) => {
+                    badFoodArray.forEach((todelete) => {
+                        if(item.name === todelete){
+                            fridge[i].splice(j, 1)
+                        }
+                    })
+                })
+            })
         })
 
     </script>
