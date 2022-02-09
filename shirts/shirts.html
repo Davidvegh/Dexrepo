@@ -27,6 +27,12 @@
         <select name="shirtoptions" id="shirtoptions">
         </select>
         <button id="filter">Filter</button>
+        <input type="text" placeholder="color" id="color">
+        <input type="text" placeholder="text" id="text">
+        <input type="text" placeholder="text color" id="textcolor">
+        <input type="text" placeholder="quantity" id="qty">
+        <button id="add">Add</button>
+        <button type="reset">Clear</button>
     </form>
 
     <div class="main">
@@ -35,7 +41,7 @@
 
     <script>
 
-        let shirts = [
+        const shirts = [
             { color: "red", text: "You are the CSS to my HTML", textColor: "yellow", qty: 5 },
             { color: "blue", text: "Woof", textColor: "white", qty: 3 },
             { color: "yellow", text: "I <3 JavaScript", textColor: "green", qty: 1 },
@@ -45,7 +51,7 @@
 
 
 
-        let main = document.querySelector(".main");
+        const main = document.querySelector(".main");
 
         function renderShirts(shirts) {
             main.innerHTML = "";
@@ -63,7 +69,7 @@
 
 
 
-        let select = document.querySelector("#shirtoptions")
+        const select = document.querySelector("#shirtoptions")
 
         function renderOptions(shirts) {
             let none = document.createElement("option");
@@ -98,18 +104,49 @@
 
 
 
-        let filterBtn = document.querySelector("#filter")
+        const filterBtn = document.querySelector("#filter")
 
         filterBtn.addEventListener("click", (event) => {
             event.preventDefault();
 
-            if(select.value !== "all"){
+            if (select.value !== "all") {
                 renderFilter(shirts);
             }
-            else{
+            else {
                 renderShirts(shirts);
             }
-            
+
+        })
+
+
+
+        const colorInput = document.querySelector("#color");
+        const textInput = document.querySelector("#text");
+        const textColorInput = document.querySelector("#textcolor");
+        const qtyInput = document.querySelector("#qty");
+        const addBtn = document.querySelector("#add")
+
+        addBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            if (colorInput.value != "" && textInput.value != "" && textColorInput.value != "" && qtyInput.value != "") {
+                shirts.push({ color: colorInput.value, text: textInput.value, textColor: textColorInput.value, qty: Number(qtyInput.value) })
+
+                renderShirts(shirts);
+                renderOptions(shirts);
+
+                colorInput.value = "";
+                textInput.value = "";
+                textColorInput.value = "";
+                qtyInput.value = "";
+            }
+            else{
+                const alert = document.createElement("div");
+                alert.innerHTML = "Fill all inputs!";
+                alert.classList.add("shirtdiv");
+                alert.style.border = "0px"
+                main.append(alert);
+            }
         })
 
     </script>
