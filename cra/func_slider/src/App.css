@@ -37,13 +37,13 @@
 }
 
 .left_arrow:hover{
-  transform: scale(125%) translate(45%, -45%);
+  transform: scale(125%) translate(45%, -40%);
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   opacity: 0.8;
 }
 
 .right_arrow:hover{
-  transform: scale(125%) translate(-45%, -45%);
+  transform: scale(125%) translate(-45%, -40%);
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   opacity: 0.8;
 }
