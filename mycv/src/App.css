@@ -1,0 +1,113 @@
+.App {
+  text-align: center;
+}
+
+.main{
+  margin: 0 auto;
+  width: 891px;
+  height: 1260px;
+  border: 1px solid black;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.static_view{
+  width: 300px;
+  background-color: #738290;
+}
+
+.dynamic_view{
+  width: 591px;
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.navlink{
+  text-decoration: none;
+  padding: 10px 60px;
+  font-size: 1.5rem;
+  color: #738290
+}
+
+.static_view img{
+  border-radius: 100px;
+  margin-top: 50px;
+}
+
+.title{
+  text-align: left;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 50px;
+}
+
+.title h2{
+  margin-left: 5px;
+  margin-bottom: 5px;
+  color: white
+}
+
+.title .strong{
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-bottom: 3px;
+  color: white
+}
+
+.title .notstrong{
+  margin-left: 5px;
+  margin-top: 3px;
+  margin-bottom: 15px;
+  color: white
+}
+
+.language_item{
+  display: flex;
+  justify-content: space-between;
+}
+
+.outer{
+  width: 140px;
+  height: 8px;
+  background-color: #4a5258;
+  margin-top: 16px;
+  margin-right: 10px;
+  border-radius: 5px
+}
+
+.inner.english{
+  width: 120px;
+  height: 8px;
+  background-color: white;
+  border-radius: 5px
+}
+
+.inner.german{
+  width: 70px;
+  height: 8px;
+  background-color: white;
+  border-radius: 5px
+}
+
+.inner.spanish{
+  width: 100px;
+  height: 8px;
+  background-color: white;
+  border-radius: 5px
+}
+
+.main_info{
+  color: #738290;
+  margin: 0px 25px;
+}
+
+.info_title{
+  margin: 0px 0px 5px 0px;
+  text-align: left;
+}
